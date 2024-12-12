@@ -2,8 +2,8 @@
 Vue 3 project, It incorporates a Frontend Mentor challenge, adhering to a specified front-end style guide.
 
 # Frontend Mentor Challenge with Vue3
-![alt text](/vue-project/public/desktop-screenshot.png)
-![alt text](/vue-project/public/mobile-screenshot.png)
+![alt text](public/desktop-screenshot.png)
+![alt text](public/mobile-screenshot.png)
 
 ## Getting Started
 
