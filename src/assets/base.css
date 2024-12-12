@@ -53,6 +53,10 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+.error {
+  color: var(--primary-soft-red);
+}
+
 .section-gradient-light {
   background: url('/bg-pattern-desktop.svg');
   background-size: cover;

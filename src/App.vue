@@ -35,7 +35,7 @@ const handleEmailSubmit = (emailValue) => {
       <div id="desktop-message">
         <HeroTitle />
         <HeroDescription />
-        <EmailAddressInput @submit="handleEmailSubmit" />
+        <EmailAddressInput @submit="handleEmailSubmit"/>
       </div>
     </div>
     <img

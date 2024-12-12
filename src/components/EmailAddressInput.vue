@@ -1,5 +1,6 @@
 <script setup>
 import { defineProps, defineEmits, ref } from 'vue'
+import * as yup from 'yup';
 
 defineProps({
   placeholder: {
@@ -13,42 +14,77 @@ defineProps({
   buttonIconSrc: {
     type: String,
     default: '/icon-arrow.svg',
-  },
+  }
 })
 
 const email = ref('')
 const iconError = ref(false)
+const errorMessage = ref('');
 
 const emit = defineEmits(['submit'])
 
-const handleSubmit = () => {
-  emit('submit', email.value)
-  email.value = ''
-}
+const emailValidationRule = yup.string().email('Invalid email address');
+
+const validateEmail = async () => {
+  try {
+    await emailValidationRule.validate(email.value)
+    errorMessage.value = '';
+  } catch (err) {
+    errorMessage.value = err.message || 'Invalid input';
+  }
+};
+
+const handleSubmit = async () => {
+  try {
+    await validateEmail(); 
+    if (!email.value) {
+      errorMessage.value = 'Email must be provided';
+    }
+    if (!errorMessage.value) {
+      emit('submit', email.value);
+      email.value = '';
+    }
+  } catch (err) {
+    errorMessage.value = err.message || 'Validation failed'; // Set error message if validation fails
+  }
+};
 </script>
 
 <template>
   <div id="email-wrapper">
-    <input type="email" name="email" v-model="email" :placeholder="placeholder" />
-    <button type="button" :aria-label="buttonAriaLabel" @click="handleSubmit">
-      <img
-        v-if="buttonIconSrc && !iconError"
-        :src="buttonIconSrc"
-        alt="Button Icon"
-        width="10"
-        height="18"
-        @error="iconError = true"
-      />
-      <span v-else>Send</span>
-    </button>
+    <div id="input-wrapper">
+      <input type="email" name="email" v-model="email" :placeholder="placeholder" @blur="validateEmail" />
+      <button type="button" :aria-label="buttonAriaLabel" @click="handleSubmit">
+        <img
+          v-if="buttonIconSrc && !iconError"
+          :src="buttonIconSrc"
+          alt="Button Icon"
+          width="10"
+          height="18"
+          @error="iconError = true"
+        />
+        <span v-else>Send</span>
+      </button>
+    </div>
+    <p v-if="errorMessage" class="error">{{ errorMessage }}</p>
   </div>
 </template>
 
 <style scoped>
+#input-wrapper {
+  position: relative;
+  width: 100%;
+  margin-top: 1rem;
+}
+
 #email-wrapper {
   position: relative;
   width: 100%;
   margin-top: 1rem;
+}
+
+.error {
+  margin: 16px 0px 0px 16px;
 }
 
 /* Style the input field */
