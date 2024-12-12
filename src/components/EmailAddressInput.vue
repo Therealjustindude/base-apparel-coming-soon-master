@@ -17,11 +17,13 @@ defineProps({
 })
 
 const email = ref('')
+const iconError = ref(false)
 
 const emit = defineEmits(['submit'])
 
 const handleSubmit = () => {
   emit('submit', email.value)
+  email.value = ''
 }
 </script>
 
