@@ -1,10 +1,9 @@
 # vue-project
+Vue 3 project, It incorporates a Frontend Mentor challenge, adhering to a specified front-end style guide.
 
-This template should help get you started developing with Vue 3 in Vite.
-
-# Frontend Mentor Challenge with Next.js
-![alt text](public/mulit-step-form-snapshot.png)
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app). It incorporates a Frontend Mentor challenge, adhering to a specified front-end style guide.
+# Frontend Mentor Challenge with Vue3
+![alt text](public/desktop-screenshot)
+![alt text](public/mobile-screenshot)
 
 ## Getting Started
 
